@@ -23,10 +23,6 @@ public class JobPositionManager implements JobPositionService {
 
     @Override
     public List<JobPosition> getAll() {
-       /* ArrayList<JobPosition> arrays = new ArrayList<JobPosition>();
-        JobPosition job1 = new JobPosition();
-        job1.setPositionName("taha");
-        arrays.add(job1);*/
         return this.jobPositionDao.findAll();
     }
 }
