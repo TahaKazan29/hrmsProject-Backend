@@ -66,12 +66,6 @@ public class SystemPersonnelManager implements SystemPersonnelService {
         employer.setEmail(employerPendingApproval.getEmail());
         employer.setPassword(employerPendingApproval.getPassword());
         employer.setConfirmed(true);
-        //DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        //Date date = new Date();
-        /*systemPersonnelConfirmation.setConfirmedDate(dateFormat.format(date));
-        systemPersonnelConfirmation.setEmployerId(employer.getId());
-        systemPersonnelConfirmation.setSystemPersonnelId(personnelId);
-        systemPersonnelConfirmationService.add(systemPersonnelConfirmation);*/
         var result = employerService.add(employer);
         if(!result.isSuccess()){
             return new ErrorResult();
