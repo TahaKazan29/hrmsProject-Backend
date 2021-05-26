@@ -9,25 +9,20 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @Table(name="users")
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
 
-    @Column(name="email")
+    @Column(name="email",unique = true)
     private String email;
 
-    @Column(name="passwordHash")
-    private byte[] passwordHash;
-
-    @Column(name="passwordSalt")
-    private byte[] passwordSalt;
-
-    @Column(name="confirmPassword")
-    private byte[] confirmPassword;
+    @Column(name="password")
+    private String password;
 
 }

@@ -12,13 +12,15 @@ import javax.persistence.*;
 @Entity
 @Table(name="job_positions")
 public class JobPosition {
-
-    @Id
-    @GeneratedValue
+   
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
 
     @Column(name="position_name")
-    private String positionName;
+    private String positionName; 
+    
+
 
 }

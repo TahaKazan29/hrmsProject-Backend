@@ -1,11 +1,10 @@
 package hrms.hrmsProject.business.abstracts;
 
+import hrms.hrmsProject.core.utilities.results.DataResult;
 import hrms.hrmsProject.entities.concretes.JobPosition;
 
-import java.util.List;
+public interface JobPositionService extends BaseService<JobPosition> {
 
-public interface JobPositionService {
-
-    List<JobPosition> getAll();
+    DataResult<JobPosition> getByPositionName(String positionName);
 
 }
