@@ -13,7 +13,6 @@ import hrms.hrmsProject.core.entities.concretes.User;
 import hrms.hrmsProject.entities.dtos.UserForLoginDto;
 import hrms.hrmsProject.core.utilities.business.BusinessRules;
 import hrms.hrmsProject.core.utilities.results.*;
-import hrms.hrmsProject.entities.concretes.Employer;
 import hrms.hrmsProject.entities.concretes.JobSeeker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

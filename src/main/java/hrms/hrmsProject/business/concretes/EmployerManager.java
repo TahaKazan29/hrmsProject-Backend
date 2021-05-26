@@ -2,7 +2,6 @@ package hrms.hrmsProject.business.concretes;
 
 import hrms.hrmsProject.business.abstracts.EmployerPendingApprovalService;
 import hrms.hrmsProject.business.abstracts.EmployerService;
-import hrms.hrmsProject.business.abstracts.SystemPersonnelService;
 import hrms.hrmsProject.business.constants.Messages;
 import hrms.hrmsProject.core.utilities.helpers.EmailService;
 import hrms.hrmsProject.core.utilities.results.*;
