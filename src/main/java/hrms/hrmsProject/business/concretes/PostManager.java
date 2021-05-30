@@ -64,9 +64,6 @@ public class PostManager implements PostService {
         return new SuccessDataResult<List<Post>>(this.postDao.getAllActivesByCompany(employerId,PostStatus.ACTIVE));
     }
 
-
-
-
     @Override
     public DataResult<Post> getById(int id) {
         return new SuccessDataResult<Post>(this.postDao.findById(id).get());
