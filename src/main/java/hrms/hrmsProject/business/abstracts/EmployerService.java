@@ -8,4 +8,6 @@ import hrms.hrmsProject.entities.concretes.JobSeeker;
 public interface EmployerService extends BaseService<Employer>{
     Result checkEmailConfirm(EmployerPendingApproval entity);
     boolean isVerified();
+    Result passivePost(int postId);
+
 }

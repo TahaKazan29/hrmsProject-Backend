@@ -1,9 +1,6 @@
 package hrms.hrmsProject.api.controllers;
 
 import hrms.hrmsProject.business.abstracts.SystemPersonnelService;
-import hrms.hrmsProject.entities.concretes.Employer;
-import hrms.hrmsProject.entities.concretes.JobPosition;
-import hrms.hrmsProject.entities.concretes.SystemPersonnelConfirmation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +28,33 @@ public class SystemPersonnelsController {
     @DeleteMapping("/reject")
     public ResponseEntity reject(int employerId){
         var result = this.systemPersonnelService.rejectEmployerRegistration(employerId);
+        if(result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        return ResponseEntity.badRequest().body(result);
+    }
+
+    @PostMapping("/activePost")
+    public ResponseEntity activePost(int postId){
+        var result = this.systemPersonnelService.activePost(postId);
+        if(result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        return ResponseEntity.badRequest().body(result);
+    }
+
+    @PostMapping("/passivePost")
+    public ResponseEntity passivePost(int postId){
+        var result = this.systemPersonnelService.passivePost(postId);
+        if(result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        return ResponseEntity.badRequest().body(result);
+    }
+
+    @PostMapping("/rejectPost")
+    public ResponseEntity rejectPost(int postId){
+        var result = this.systemPersonnelService.rejectPost(postId);
         if(result.isSuccess()){
             return ResponseEntity.ok(result);
         }

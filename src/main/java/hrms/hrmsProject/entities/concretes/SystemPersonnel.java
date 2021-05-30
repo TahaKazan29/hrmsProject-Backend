@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
@@ -22,7 +19,11 @@ public class SystemPersonnel extends User {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "depertment_id")
-    private String depertmendId;
+    @Column(name = "department_id")
+    private String departmendId;
+
+    /*@OneToOne()
+    @JoinColumn(name="user_id")
+    private User user;*/
 
 }

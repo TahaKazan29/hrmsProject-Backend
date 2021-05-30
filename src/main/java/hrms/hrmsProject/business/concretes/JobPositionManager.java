@@ -30,7 +30,7 @@ public class JobPositionManager implements JobPositionService {
 
     @Override
     public DataResult<JobPosition> getById(int id) {
-        return null;
+        return new SuccessDataResult<JobPosition>(this.jobPositionDao.findById(id).get());
     }
 
     @Override

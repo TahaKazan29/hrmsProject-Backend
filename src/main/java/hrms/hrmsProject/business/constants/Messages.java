@@ -35,4 +35,13 @@ public class Messages {
     public static String pendingApproval() {return "İşleminiz tamamlandı , Sistem onayladıktan sonra kaydınız gerçekleşecek";}
     public static String pendingApprovalListed() {return "Onay bekleyen iş verenler listelendi";}
     public static String usersListed(){return "Tüm kullanıcılar listelendi";}
+    public static String postAdded(){return "İlanınız eklendi";}
+    public static String postUpdated(){return "İlanınız güncellendi";}
+    public static String postValidationError(){return "Pozisyon adedi , şehir , iş tanımı , iş pozisyonu alanları zorunludur!";}
+    public static String activatedPost(){return "ilan kabul edildi";}
+    public static String activeError(){return "ilan kabul edilirken hata oluştu";}
+    public static String passiveError(){return "ilan pasif hale gelirken bir hata oluştu";}
+    public static String passivePost(){return "ilan pasifleştirildi";}
+    public static String rejectError(){return "ilan reddedilirken bir hata oluştu";}
+    public static String rejectPost(){return "ilan reddedildi";}
 }

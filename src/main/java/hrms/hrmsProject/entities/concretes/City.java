@@ -5,28 +5,26 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.List;
 
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name="job_positions")
+@Table(name = "cities")
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","posts"})
-public class JobPosition {
-   
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+public class City {
+
+    @Id
     private int id;
+    private String name;
 
-    @Column(name="position_name")
-    private String positionName;
-
-    @OneToMany(mappedBy = "jobPosition")
+    @OneToMany(mappedBy = "city")
     private List<Post> posts;
-    
 
 
 }

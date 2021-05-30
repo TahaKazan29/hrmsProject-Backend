@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@PrimaryKeyJoinColumn(name = "user_id")
+
 @Table(name="job_seekers")
 public class JobSeeker extends User {
 

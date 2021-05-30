@@ -2,12 +2,14 @@ package hrms.hrmsProject.business.concretes;
 
 import hrms.hrmsProject.business.abstracts.EmployerPendingApprovalService;
 import hrms.hrmsProject.business.abstracts.EmployerService;
+import hrms.hrmsProject.business.abstracts.PostService;
 import hrms.hrmsProject.business.constants.Messages;
 import hrms.hrmsProject.core.utilities.helpers.EmailService;
 import hrms.hrmsProject.core.utilities.results.*;
 import hrms.hrmsProject.dataAccess.abstracts.EmployerDao;
 import hrms.hrmsProject.entities.concretes.Employer;
 import hrms.hrmsProject.entities.concretes.EmployerPendingApproval;
+import hrms.hrmsProject.entities.concretes.PostStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +21,16 @@ public class EmployerManager implements EmployerService {
 
     private EmployerDao employerDao;
     private EmailService emailService;
+    private PostService postService;
     private EmployerPendingApprovalService employerPendingApprovalService;
 
     @Autowired
     public EmployerManager(EmployerDao employerDao,EmailService emailService,
-                           EmployerPendingApprovalService employerPendingApprovalService) {
+                           EmployerPendingApprovalService employerPendingApprovalService,
+                           PostService postService) {
         this.employerDao = employerDao;
         this.emailService = emailService;
+        this.postService = postService;
         this.employerPendingApprovalService = employerPendingApprovalService;
     }
 
@@ -69,4 +74,17 @@ public class EmployerManager implements EmployerService {
         this.employerPendingApprovalService.save(entity);
         return new SuccessResult();
     }
+
+    @Override
+    public Result passivePost(int postId) {
+        var post = this.postService.getById(postId).getData();
+        post.setStatus(PostStatus.values()[3]);
+        var result = this.postService.update(post);
+        if(!result.isSuccess()){
+            return new ErrorResult(Messages.passiveError());
+        }
+        return new SuccessResult(Messages.passivePost());
+    }
+
+
 }
