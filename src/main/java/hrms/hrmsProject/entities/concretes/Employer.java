@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
@@ -18,12 +20,23 @@ import javax.persistence.*;
 @Table(name="employers")
 public class Employer extends User {
 
+    @NotNull
+    @NotBlank
     @Column(name = "company_name")
     private String companyName;
+
+    @NotNull
+    @NotBlank
     @Column(name = "web_site")
     private String webSite;
+
+    @NotNull
+    @NotBlank
     @Column(name = "phone_number")
     private String phoneNumber;
+
+    @NotNull
+    @NotBlank
     @Column(name = "is_confirmed")
     private boolean isConfirmed;
 

@@ -44,4 +44,6 @@ public class Messages {
     public static String passivePost(){return "ilan pasifleştirildi";}
     public static String rejectError(){return "ilan reddedilirken bir hata oluştu";}
     public static String rejectPost(){return "ilan reddedildi";}
+    public static String validationError(){return "Doğrulama hataları";}
+    public static String resumeCreated(){return "Cv oluşturuldu";}
 }

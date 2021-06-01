@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/posts")
 public class PostsController {
@@ -18,7 +20,7 @@ public class PostsController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity add(@RequestBody PostDto postDto) {
+    public ResponseEntity add(@Valid @RequestBody PostDto postDto) {
         var result = postService.add(postDto.toNewModel());
         if(result.isSuccess()){
             return ResponseEntity.ok(result);
@@ -36,7 +38,7 @@ public class PostsController {
     }
 
     @GetMapping("/getAllIsActive")
-    public ResponseEntity getIsActive(){
+    public ResponseEntity getAllActives(){
         var result = postService.getAllActives();
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
@@ -54,7 +56,7 @@ public class PostsController {
     }
 
     @GetMapping("/getAllIsPassive")
-    public ResponseEntity getIsPassive(){
+    public ResponseEntity getAllIsPassive(){
         var result = postService.getAllPassive();
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
@@ -63,7 +65,7 @@ public class PostsController {
     }
 
     @GetMapping("/getAllIsRejected")
-    public ResponseEntity getIsRejected(){
+    public ResponseEntity getAllIsRejected(){
         var result = postService.getAllRejections();
         if (result.isSuccess()){
             return ResponseEntity.ok(result);

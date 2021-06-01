@@ -4,19 +4,20 @@ import hrms.hrmsProject.core.utilities.results.DataResult;
 import hrms.hrmsProject.core.utilities.results.Result;
 import hrms.hrmsProject.entities.concretes.Post;
 import hrms.hrmsProject.entities.dtos.PostDto;
+import hrms.hrmsProject.entities.dtos.PostListDto;
 
 import java.util.List;
 
 public interface PostService {
 
     DataResult<List<Post>> getAll();
-    DataResult<List<Post>> getAllActives();
-    DataResult<List<Post>> getAllActivesByDate();
-    DataResult<List<Post>> getAllPassive();
-    DataResult<List<Post>> getAllRejections();
-    DataResult<List<Post>> getAllWaitingApproval();
-    DataResult<List<Post>> getAllExpired();
-    DataResult<List<Post>> getAllActivesByCompany(int employerId);
+    DataResult<List<PostListDto>> getAllActives();
+    DataResult<List<PostListDto>> getAllActivesByDate();
+    DataResult<List<PostListDto>> getAllPassive();
+    DataResult<List<PostListDto>> getAllRejections();
+    DataResult<List<PostListDto>> getAllWaitingApproval();
+    DataResult<List<PostListDto>> getAllExpired();
+    DataResult<List<PostListDto>> getAllActivesByCompany(int employerId);
     DataResult<Post> getById(int id);
     Result add(Post post);
     Result update(Post entity);

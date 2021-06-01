@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
@@ -21,6 +23,8 @@ public class JobPosition {
     @Column(name="id")
     private int id;
 
+	@NotBlank
+    @NotNull
     @Column(name="position_name")
     private String positionName;
 

@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
@@ -17,11 +19,18 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotBlank
+    @NotNull
     private String description;
     private double minSalary;
     private double maxSalary;
+
+    @NotNull
     private int positionCount;
+
     private Date lastApplyDate;
+    private Date releaseDate;
 
     @ManyToOne()
     @JoinColumn(name = "city_id")
@@ -34,7 +43,6 @@ public class Post {
     @ManyToOne()
     @JoinColumn(name = "employer_id")
     private Employer employer;
-
 
     private PostStatus status;
 }

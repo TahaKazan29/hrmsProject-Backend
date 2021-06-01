@@ -1,13 +1,12 @@
 package hrms.hrmsProject.business.concretes;
 
-import hrms.hrmsProject.business.abstracts.CityService;
-import hrms.hrmsProject.business.abstracts.JobPositionService;
 import hrms.hrmsProject.business.abstracts.PostService;
 import hrms.hrmsProject.business.constants.Messages;
 import hrms.hrmsProject.core.utilities.results.*;
 import hrms.hrmsProject.dataAccess.abstracts.PostDao;
 import hrms.hrmsProject.entities.concretes.Post;
 import hrms.hrmsProject.entities.concretes.PostStatus;
+import hrms.hrmsProject.entities.dtos.PostListDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -29,39 +28,39 @@ public class PostManager implements PostService {
     }
 
     @Override
-    public DataResult<List<Post>> getAllActives() {
-        return new SuccessDataResult<List<Post>>(this.postDao.getByStatus(PostStatus.ACTIVE));
+    public DataResult<List<PostListDto>> getAllActives() {
+        return new SuccessDataResult<List<PostListDto>>(this.postDao.getByStatus(PostStatus.ACTIVE));
     }
 
     @Override
-    public DataResult<List<Post>> getAllActivesByDate() {
-        Sort sort = Sort.by(Sort.Direction.DESC,"lastApplyDate");
-        return new SuccessDataResult<List<Post>>(this.postDao.getByStatus(PostStatus.ACTIVE,sort));
+    public DataResult<List<PostListDto>> getAllActivesByDate() {
+        Sort sort = Sort.by(Sort.Direction.DESC,"releaseDate");
+        return new SuccessDataResult<List<PostListDto>>(this.postDao.getByStatus(PostStatus.ACTIVE,sort));
     }
 
     @Override
-    public DataResult<List<Post>> getAllPassive() {
-        return new SuccessDataResult<List<Post>>(this.postDao.getByStatus(PostStatus.PASSIVE));
+    public DataResult<List<PostListDto>> getAllPassive() {
+        return new SuccessDataResult<List<PostListDto>>(this.postDao.getByStatus(PostStatus.PASSIVE));
     }
 
     @Override
-    public DataResult<List<Post>> getAllRejections() {
-        return new SuccessDataResult<List<Post>>(this.postDao.getByStatus(PostStatus.REJECTED));
+    public DataResult<List<PostListDto>> getAllRejections() {
+        return new SuccessDataResult<List<PostListDto>>(this.postDao.getByStatus(PostStatus.REJECTED));
     }
 
     @Override
-    public DataResult<List<Post>> getAllWaitingApproval() {
-        return new SuccessDataResult<List<Post>>(this.postDao.getByStatus(PostStatus.WAITING_APPROVAL));
+    public DataResult<List<PostListDto>> getAllWaitingApproval() {
+        return new SuccessDataResult<List<PostListDto>>(this.postDao.getByStatus(PostStatus.WAITING_APPROVAL));
     }
 
     @Override
-    public DataResult<List<Post>> getAllExpired() {
-        return new SuccessDataResult<List<Post>>(this.postDao.getByStatus(PostStatus.EXPIRED));
+    public DataResult<List<PostListDto>> getAllExpired() {
+        return new SuccessDataResult<List<PostListDto>>(this.postDao.getByStatus(PostStatus.EXPIRED));
     }
 
     @Override
-    public DataResult<List<Post>> getAllActivesByCompany(int employerId) {
-        return new SuccessDataResult<List<Post>>(this.postDao.getAllActivesByCompany(employerId,PostStatus.ACTIVE));
+    public DataResult<List<PostListDto>> getAllActivesByCompany(int employerId) {
+        return new SuccessDataResult<List<PostListDto>>(this.postDao.getAllActivesByCompany(employerId,PostStatus.ACTIVE));
     }
 
     @Override
@@ -71,11 +70,6 @@ public class PostManager implements PostService {
 
     @Override
     public Result add(Post post) {
-        if(String.valueOf(post.getCity()) == null || post.getDescription() == ""
-        || String.valueOf(post.getEmployer()) == null || String.valueOf(post.getPositionCount()) == ""
-        || post.getJobPosition() == null){
-            return new ErrorResult(Messages.postValidationError());
-        }
         this.postDao.save(post);
         return new SuccessResult(Messages.postAdded());
     }

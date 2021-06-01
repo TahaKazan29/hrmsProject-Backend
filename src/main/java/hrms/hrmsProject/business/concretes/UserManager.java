@@ -5,7 +5,7 @@ import hrms.hrmsProject.business.constants.Messages;
 import hrms.hrmsProject.core.entities.concretes.User;
 import hrms.hrmsProject.core.utilities.helpers.EmailService;
 import hrms.hrmsProject.core.utilities.results.*;
-import hrms.hrmsProject.dataAccess.abstracts.UserDao;
+import hrms.hrmsProject.core.dataAccess.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

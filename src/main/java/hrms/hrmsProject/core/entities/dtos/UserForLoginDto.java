@@ -1,4 +1,4 @@
-package hrms.hrmsProject.entities.dtos;
+package hrms.hrmsProject.core.entities.dtos;
 
 import hrms.hrmsProject.core.entities.abstracts.Dto;
 import lombok.AllArgsConstructor;
