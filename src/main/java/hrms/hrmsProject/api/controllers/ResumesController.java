@@ -28,7 +28,7 @@ public class ResumesController {
     }
 
 
-    @GetMapping("/getall")
+    @GetMapping("/getAllForInOrder")
     public ResponseEntity getAll(){
         var result = resumeService.getAll();
         if (result.isSuccess()){
