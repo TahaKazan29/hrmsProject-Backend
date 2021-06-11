@@ -37,12 +37,20 @@ public class Post {
     private City city;
 
     @ManyToOne()
-    @JoinColumn(name = "position_id")
+    @JoinColumn(name = "jobPosition_id")
     private JobPosition jobPosition;
 
     @ManyToOne()
     @JoinColumn(name = "employer_id")
     private Employer employer;
+
+    @ManyToOne()
+    @JoinColumn(name = "way_of_working_id")
+    private WayOfWorking wayOfWorking;
+
+    @ManyToOne()
+    @JoinColumn(name = "working_time_id")
+    private WorkingTime workingTime;
 
     private PostStatus status;
 }

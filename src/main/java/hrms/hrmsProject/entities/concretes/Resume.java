@@ -20,8 +20,6 @@ public class Resume {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String description;
-    private String githubAddress;
-    private String linkedinAddress;
 
     @OneToMany(mappedBy = "resume")
     private List<School> schools;
@@ -34,6 +32,9 @@ public class Resume {
 
     @OneToMany(mappedBy = "resume")
     private List<WorkExperience> workExperiences ;
+
+    @OneToMany(mappedBy = "resume")
+    private List<Link> links ;
 
     @ManyToOne()
     @JoinColumn(name="job_seeker_id")

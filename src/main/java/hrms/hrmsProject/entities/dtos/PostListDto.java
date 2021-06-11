@@ -19,6 +19,8 @@ public class PostListDto {
     private Date releaseDate;
     private String companyName;
     private String cityName;
+    private String wayOfWorking;
+    private String workingTime;
 
 
 }

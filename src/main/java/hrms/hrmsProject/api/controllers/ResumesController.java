@@ -46,7 +46,7 @@ public class ResumesController {
         return ResponseEntity.badRequest().body(result);
     }
 
-    @GetMapping("/getBy")
+    @GetMapping("/getAllForInOrder")
     public ResponseEntity getAllForInOrder(int jobSeekerId){
         var result = resumeService.getByJobSeekerForResume(jobSeekerId);
         if (result.isSuccess()){

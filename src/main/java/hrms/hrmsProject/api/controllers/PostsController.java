@@ -1,6 +1,7 @@
 package hrms.hrmsProject.api.controllers;
 
 import hrms.hrmsProject.business.abstracts.PostService;
+import hrms.hrmsProject.entities.dtos.PostByFilterDto;
 import hrms.hrmsProject.entities.dtos.PostDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/posts")
 public class PostsController {
@@ -24,6 +26,16 @@ public class PostsController {
         var result = postService.add(postDto.toNewModel());
         if(result.isSuccess()){
             return ResponseEntity.ok(result);
+        }
+        return ResponseEntity.badRequest().body(result);
+    }
+
+    @GetMapping("/getfilter")
+    public ResponseEntity getfilter(PostByFilterDto postByFilterDto){
+        var result = postService.getFilter(postByFilterDto);
+        if (result.isSuccess()){
+            return ResponseEntity.ok
+                    (result);
         }
         return ResponseEntity.badRequest().body(result);
     }
@@ -49,6 +61,15 @@ public class PostsController {
     @GetMapping("/getAllActivesByDate")
     public ResponseEntity getAllActivesByDate(){
         var result = postService.getAllActivesByDate();
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        return ResponseEntity.badRequest().body(result);
+    }
+
+    @GetMapping("/getActivesByDate")
+    public ResponseEntity getActivesByDate(@RequestParam int postId){
+        var result = postService.getActivesByDate(postId);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }
