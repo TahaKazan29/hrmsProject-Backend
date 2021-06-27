@@ -20,7 +20,6 @@ public class PostSpecs {
 
                 if(postByFilterDto.getCityIds() != null){
                     final Predicate cityPredicate = root.get("city").get("id").in(postByFilterDto.getCityIds());
-                    System.out.println(cityPredicate);
                     predicates.add(cityPredicate);
                 }
 
@@ -32,6 +31,11 @@ public class PostSpecs {
                 if(postByFilterDto.getWayOfWorkingIds() != null){
                     final Predicate wayOfWorkingPredicate = root.get("wayOfWorking").get("id").in(postByFilterDto.getWayOfWorkingIds());
                     predicates.add(wayOfWorkingPredicate);
+                }
+
+                if(postByFilterDto.getWorkingTimeIds() != null){
+                    final Predicate workingTimePredicate = root.get("workingTime").get("id").in(postByFilterDto.getWorkingTimeIds());
+                    predicates.add(workingTimePredicate);
                 }
                 return cb.and(predicates.toArray(new Predicate[predicates.size()]));
             }

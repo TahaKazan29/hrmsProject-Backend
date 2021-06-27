@@ -14,5 +14,6 @@ public class PostByFilterDto {
     private ArrayList<Integer> cityIds;
     private ArrayList<Integer> positionIds;
     private ArrayList<Integer> wayOfWorkingIds;
+    private ArrayList<Integer> workingTimeIds;
 
 }

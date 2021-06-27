@@ -7,11 +7,14 @@ import hrms.hrmsProject.business.specifications.PostSpecs;
 import hrms.hrmsProject.core.utilities.results.*;
 import hrms.hrmsProject.dataAccess.abstracts.PostDao;
 import hrms.hrmsProject.entities.concretes.Post;
-import hrms.hrmsProject.entities.concretes.PostStatus;
+import hrms.hrmsProject.entities.enums.PostStatus;
 import hrms.hrmsProject.entities.dtos.PostByFilterDto;
 import hrms.hrmsProject.entities.dtos.PostListDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -32,10 +35,10 @@ public class PostManager implements PostService {
     }
 
     @Override
-    public DataResult<List<PostListDto>> getFilter(PostByFilterDto postByFilterDto) {
+    public DataResult<List<PostListDto>> getFilter(PostByFilterDto postByFilterDto,int pageNumber) {
+        Pageable pageable = PageRequest.of(pageNumber -1,10); //şimdilik 5
         Specification<Post> spec1 = PostSpecs.postFilter(postByFilterDto);
-
-        List<Post> result = this.postDao.findAll(spec1);
+        Page<Post> result = this.postDao.findAll(spec1,pageable);
         List<Post> active = new ArrayList<>();
 
         for (Post post:result) {
@@ -50,8 +53,18 @@ public class PostManager implements PostService {
     }
 
     @Override
-    public DataResult<List<Post>> getAll() {
-        return new SuccessDataResult<List<Post>>(this.postDao.findAll());
+    public DataResult<Post> getById(int postId) {
+        return new SuccessDataResult<Post>(this.postDao.findById(postId).get());
+    }
+
+    @Override
+    public DataResult<PostListDto> getByPostDetail(int postId) {
+        return new SuccessDataResult<>(this.postDao.getByPostDetail(postId));
+    }
+
+    @Override
+    public DataResult<List<PostListDto>> getAll() {
+        return new SuccessDataResult<List<PostListDto>>(this.postDao.getAll());
     }
 
     @Override
@@ -95,14 +108,15 @@ public class PostManager implements PostService {
     }
 
     @Override
-    public DataResult<Post> getById(int id) {
-        return new SuccessDataResult<Post>(this.postDao.findById(id).get());
+    public DataResult<List<Post>> getAllActivesByEmployerId(int employerId) {
+        return new SuccessDataResult<List<Post>>(this.postDao.getAllActivesByEmployerId(employerId,PostStatus.ACTIVE));
     }
 
     @Override
-    public Result add(Post post) {
-        this.postDao.save(post);
-        return new SuccessResult(Messages.postAdded());
+    public DataResult<PostListDto> add(Post post) {
+        var result = this.postDao.save(post);
+        var dto = this.postDao.getByPostDetail(result.getId());
+        return new SuccessDataResult<PostListDto>(dto,Messages.postAdded());
     }
 
     @Override

@@ -1,8 +1,11 @@
 package hrms.hrmsProject.api.controllers;
 
 import hrms.hrmsProject.business.abstracts.PostService;
+import hrms.hrmsProject.entities.concretes.Post;
 import hrms.hrmsProject.entities.dtos.PostByFilterDto;
 import hrms.hrmsProject.entities.dtos.PostDto;
+import hrms.hrmsProject.entities.dtos.PostListDto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +18,12 @@ import javax.validation.Valid;
 public class PostsController {
 
     private PostService postService;
+    private ModelMapper modelMapper;
 
     @Autowired
-    public PostsController(PostService postService) {
+    public PostsController(PostService postService,ModelMapper modelMapper) {
         this.postService = postService;
+        this.modelMapper = modelMapper;
     }
 
     @PostMapping("/add")
@@ -30,12 +35,11 @@ public class PostsController {
         return ResponseEntity.badRequest().body(result);
     }
 
-    @GetMapping("/getfilter")
-    public ResponseEntity getfilter(PostByFilterDto postByFilterDto){
-        var result = postService.getFilter(postByFilterDto);
+    @PostMapping("/getFilter")
+    public ResponseEntity getfilter(@RequestBody PostByFilterDto postByFilterDto,int pageNumber){
+        var result = postService.getFilter(postByFilterDto,pageNumber);
         if (result.isSuccess()){
-            return ResponseEntity.ok
-                    (result);
+            return ResponseEntity.ok(result);
         }
         return ResponseEntity.badRequest().body(result);
     }
@@ -115,6 +119,24 @@ public class PostsController {
     @GetMapping("/getAllActivesByCompany")
     public ResponseEntity getAllActivesByCompany(int employerId){
         var result = postService.getAllActivesByCompany(employerId);
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        return ResponseEntity.badRequest().body(result);
+    }
+
+    @GetMapping("/getById")
+    public ResponseEntity getById(int postId){
+        var result = postService.getById(postId);
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        return ResponseEntity.badRequest().body(result);
+    }
+
+    @GetMapping("/getByPostDetail")
+    public ResponseEntity getByPostDetail(int postId){
+        var result = postService.getByPostDetail(postId);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }

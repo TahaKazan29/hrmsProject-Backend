@@ -27,26 +27,27 @@ public class SchoolManager implements SchoolService {
 
     @Override
     public Result add(List<SchoolDto> schoolDtos) {
-        List<School> schools = new ArrayList<School>();
-        for (SchoolDto schoolDto : schoolDtos){
-            var resume = new Resume();
-            var school = new School();
-            school.setId(schoolDto.getId());
-            school.setSchoolName(schoolDto.getSchoolName());
-            school.setDateOfGraduation(schoolDto.getDateOfGraduation());
-            school.setStartingDate(schoolDto.getStartingDate());
-            school.setSectionName(schoolDto.getSectionName());
-            resume.setId(schoolDto.getResumeId());
-            school.setResume(resume);
-            schools.add(school);
-        }
-        this.schoolDao.saveAll(schools);
+//        List<School> schools = new ArrayList<School>();
+//        for (SchoolDto schoolDto : schoolDtos){
+//            var resume = new Resume();
+//            var school = new School();
+//            school.setId(schoolDto.getId());
+//            school.setSchoolName(schoolDto.getSchoolName());
+//            school.setDateOfGraduation(schoolDto.getDateOfGraduation());
+//            school.setStartingDate(schoolDto.getStartingDate());
+//            school.setSectionName(schoolDto.getSectionName());
+//            resume.setId(schoolDto.getResumeId());
+//            school.setResume(resume);
+//            schools.add(school);
+//        }
+//        this.schoolDao.saveAll(schools);
         return new SuccessResult();
     }
 
     @Override
     public DataResult<List<School>> getAllByJobSeekerOrderByDateOfGraduation(int jobSeekerId) {
-        return new SuccessDataResult<>(this.schoolDao.findByOrderByDateOfGraduationDesc(jobSeekerId));
+//        return new SuccessDataResult<>(this.schoolDao.findByOrderByDateOfGraduationDesc(jobSeekerId));
+            return null;
     }
 
 

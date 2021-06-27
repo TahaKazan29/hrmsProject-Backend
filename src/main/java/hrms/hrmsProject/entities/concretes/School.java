@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -18,15 +19,20 @@ public class School {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String schoolName;
-    private String sectionName;
     private Date startingDate;
     private Date dateOfGraduation;
 
-    @ManyToOne()
-    @JsonIgnore
-    @JoinColumn(name="resume_id")
-    private Resume resume;
+//    @ManyToOne()
+//    @JsonIgnore
+//    @JoinColumn(name="resume_id")
+//    private Resume resume;
+
+
+//    @OneToMany(mappedBy = "school")
+//    private List<University> universities;
+//
+//    @OneToMany(mappedBy="school")
+//    private List<Resume> resumes;
 
 
 }

@@ -1,5 +1,6 @@
 package hrms.hrmsProject.entities.dtos;
 
+import hrms.hrmsProject.entities.enums.PostStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class PostListDto {
     private String cityName;
     private String wayOfWorking;
     private String workingTime;
+    private PostStatus status;
 
 
 }

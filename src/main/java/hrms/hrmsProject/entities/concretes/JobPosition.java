@@ -30,7 +30,8 @@ public class JobPosition {
 
     @OneToMany(mappedBy = "jobPosition")
     private List<Post> posts;
-    
 
+    @OneToMany(mappedBy = "jobPosition")
+    private List<Resume> resumes;
 
 }

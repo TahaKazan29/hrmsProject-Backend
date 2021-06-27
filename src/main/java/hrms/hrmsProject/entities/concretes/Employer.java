@@ -1,7 +1,9 @@
 package hrms.hrmsProject.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import hrms.hrmsProject.core.entities.concretes.User;
+import hrms.hrmsProject.entities.enums.EmployerStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +22,8 @@ import javax.validation.constraints.NotNull;
 @Table(name="employers")
 public class Employer extends User {
 
+    private String description;
+
     @NotNull
     @NotBlank
     @Column(name = "company_name")
@@ -35,12 +39,16 @@ public class Employer extends User {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @NotNull
-    @NotBlank
-    @Column(name = "is_confirmed")
-    private boolean isConfirmed;
+    @OneToMany(mappedBy = "employer")
+    @JsonIgnore
+    private List<Post> posts;
 
     @OneToMany(mappedBy = "employer")
-    private List<Post> posts;
+    @JsonIgnore()
+    private List<EmployerProfileUpdate> employerProfileUpdates;
+
+    private EmployerStatus status;
+
+
 
 }

@@ -1,4 +1,4 @@
-package hrms.hrmsProject.entities.concretes;
+package hrms.hrmsProject.entities.enums;
 
 public enum PostStatus {
     WAITING_APPROVAL,

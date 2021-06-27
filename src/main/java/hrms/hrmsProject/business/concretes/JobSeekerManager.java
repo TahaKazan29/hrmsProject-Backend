@@ -10,6 +10,8 @@ import hrms.hrmsProject.entities.concretes.JobSeeker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,6 +45,7 @@ public class JobSeekerManager implements JobSeekerService {
         if (!this.isVerified()){
             return new ErrorResult();
         }
+        entity.setDateOfRegistration(Date.valueOf(LocalDate.now()));
         this.jobSeekerDao.save(entity);
         return new SuccessResult();
     }

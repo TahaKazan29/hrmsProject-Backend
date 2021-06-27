@@ -51,7 +51,7 @@ public class UserManager implements UserService {
 
     @Override
     public DataResult<User> getById(int id) {
-        return null;
+        return new SuccessDataResult<>(this.userDao.findById(id).get());
     }
 
 

@@ -6,7 +6,7 @@ import hrms.hrmsProject.business.abstracts.JobSeekerService;
 import hrms.hrmsProject.business.abstracts.UserService;
 import hrms.hrmsProject.business.constants.Messages;
 import hrms.hrmsProject.core.adapters.JobSeekerCheckService;
-import hrms.hrmsProject.entities.concretes.EmployerPendingApproval;
+import hrms.hrmsProject.entities.concretes.Employer;
 import hrms.hrmsProject.entities.dtos.EmployerForRegisterDto;
 import hrms.hrmsProject.entities.dtos.JobSeekerForRegisterDto;
 import hrms.hrmsProject.core.entities.concretes.User;
@@ -71,14 +71,14 @@ public class AuthManager implements AuthService {
             return result;
         }
 
-        var employerPendingApproval = new EmployerPendingApproval();
-        employerPendingApproval.setCompanyName(employerForRegisterDto.getCompanyName());
-        employerPendingApproval.setPhoneNumber(employerForRegisterDto.getPhoneNumber());
-        employerPendingApproval.setEmail(employerForRegisterDto.getEmail());
-        employerPendingApproval.setWebSite(employerForRegisterDto.getWebsite());
-        employerPendingApproval.setPassword(employerForRegisterDto.getPassword());
+        var employer = new Employer();
+        employer.setCompanyName(employerForRegisterDto.getCompanyName());
+        employer.setPhoneNumber(employerForRegisterDto.getPhoneNumber());
+        employer.setEmail(employerForRegisterDto.getEmail());
+        employer.setWebSite(employerForRegisterDto.getWebsite());
+        employer.setPassword(employerForRegisterDto.getPassword());
 
-        var checkVerification = this.employerService.checkEmailConfirm(employerPendingApproval);
+        var checkVerification = this.employerService.add(employer);
         if(!checkVerification.isSuccess()){
             return new ErrorResult(Messages.verificationFailed());
         }
